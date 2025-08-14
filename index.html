@@ -316,13 +316,6 @@
                 { id: 'strh9', title: 'Personalized Recommendations (User-Based)', task: "Suggest content to a user that was highly rated by other users with a similar watch history.", tables: ['watch_history(user_id, content_id)'], solution: "SELECT 'This is a complex multi-step calculation not easily represented in a single SQLite query for this simple setup.' as result;", setupSQL: "CREATE TABLE watch_history(user_id INT, content_id INT);" },
                 { id: 'strh10', title: 'Time to First Watch', task: "For each user, calculate the time difference in days between their sign-up date and the first time they watched any content.", tables: ['users(user_id, signup_date)', 'watch_history(user_id, watch_date)'], solution: "WITH FirstWatch AS (SELECT user_id, MIN(watch_date) as first_watch FROM watch_history GROUP BY 1) SELECT u.user_id, JULIANDAY(fw.first_watch) - JULIANDAY(u.signup_date) FROM users u JOIN FirstWatch fw ON u.user_id = fw.user_id;", setupSQL: "CREATE TABLE users(user_id INT, signup_date TEXT); CREATE TABLE watch_history(user_id INT, watch_date TEXT); INSERT INTO users VALUES (1, '2025-01-01'); INSERT INTO watch_history VALUES (1, '2025-01-05');" }
             ];
-            
-            // const themes = ['saas', 'ecommerce', 'social', 'fintech', 'healthcare', 'streaming'];
-            // themes.forEach(theme => {
-            //     themedQuestionBanks[theme].easy = Array.from({length: 10}, (_, i) => ({ ...themedQuestionBanks.[theme].easy[i], id: `${theme.slice(0,2)}e${i+1}` }));
-            //     themedQuestionBanks[theme].medium = Array.from({length: 10}, (_, i) => ({ ...themedQuestionBanks.[theme].medium[i], id: `${theme.slice(0,2)}m${i+1}` }));
-            //     themedQuestionBanks[theme].hard = Array.from({length: 10}, (_, i) => ({ ...themedQuestionBanks.[theme].hard[i], id: `${theme.slice(0,2)}h${i+1}` }));
-            // });
         }
         populateQuestions();
         
