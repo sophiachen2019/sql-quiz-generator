@@ -387,7 +387,7 @@
             });
 
             companyChoices.setChoices(companyData, 'value', 'label', false);
-            companyChoices.setValue(['Atlassian']); // Set a default value
+            companyChoices.setValue(['']); // Set a default value
 
             companySelector.addEventListener('change', updateThemeAndMaxQuestions);
             document.getElementById('difficulty').addEventListener('change', updateThemeAndMaxQuestions);
